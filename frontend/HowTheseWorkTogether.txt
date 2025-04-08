@@ -1,0 +1,76 @@
+```
+
+flowchart TB:
+    M[main.py] --> W[MainWindow (main_window.py)]
+    W --> U[DatasetUploader]
+    W --> P[DatasetPreview]
+    U -->|file selected| FL[FileLoader]
+    FL -->|returns DataFrame| U
+    U -->|emit DataFrame| P
+
+#=======================================================================
+
++-------------------+
+|     main.py       |
++-------------------+
+          ↓
++-------------------+
+| MainWindow        |
+| (main_window.py)  |
++-------------------+
+          ↓
+   +---------------+------------------+
+   |                                  |
++-------+-------------------------+-------+
+| DatasetUploader                 | DatasetPreview |
++----------------------------------+-------+
+          ↓                                  ↑
+   +---------------+                         |
+   | FileLoader    |-------------------------+
+   +---------------+
+
+#=======================================================================
+
+#DETAILED ANNOTATION:
+
++-------------------+
+|     main.py       |  [Entry Point]
++-------------------+
+          ↓
++-------------------+
+| MainWindow        |  [Central Hub]
+| (main_window.py)  |
++-------------------+
+          ↓
+   +---------------+------------------+
+   |                                  |
++-------+-------------------------+-------+
+| DatasetUploader                 | DatasetPreview |
+| [Handles File Uploads]          | [Displays Data]|
++----------------------------------+-------+
+          ↓                                  ↑
+   +---------------+                         |
+   | FileLoader    |-------------------------+
+   | [Processes File| Returns DataFrame]     |
+   +---------------+
+
+
+#========================================================================
+
+main.py → MainWindow
+  ↳ DatasetUploader → FileLoader → Returns DataFrame → DatasetUploader
+  ↳ DatasetPreview ← Emit DataFrame
+
+#=======================================================================
+
+main.py
+   ↓
+MainWindow
+   ↓
+┌─────────────────┐     ┌─────────────────┐
+│ DatasetUploader │ --> │ DatasetPreview  │
+└─────────────────┘     └─────────────────┘
+         ↓
+   FileLoader
+
+```
