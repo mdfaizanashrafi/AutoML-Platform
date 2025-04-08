@@ -1,0 +1,12 @@
+pyqt5
+scikit-learn
+tensorflow
+polars
+fastapi
+unicorn
+psycopg2-binary
+sqlalchemy
+docker
+kubernetes
+python-dotenv
+
